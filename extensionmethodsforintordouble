@@ -1,0 +1,83 @@
+
+namespace extensions_assignment
+{
+
+    public static class SquareIntExtension
+    {
+        public static int Square(this int number)
+        {
+            return number * number;
+        }
+    }
+
+        public static class ReverseDigitsIntExtension
+        {
+            public static int ReverseDigits(this int number)
+            {
+                
+           
+                    char[] getdigits = number.ToString().ToArray();
+                    var reversedigits= getdigits.Reverse();
+                    string s = string.Join("", reversedigits);
+                    int output= int.Parse(s);
+                    return output;
+                
+            }
+        }
+
+    public static class IsInDoubleExtensions
+    {
+        public static bool IsIn(this double number, double[] array)
+        {
+            
+            return Array.IndexOf(array,number) !=-1;
+
+
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Introduceti numarul intreg care va fi utilizat in metode");
+            try
+            {
+                string readconsole = Console.ReadLine();
+                int number = Int32.Parse(readconsole);
+                Console.WriteLine(number.Square());
+                Console.WriteLine(number.ReverseDigits());
+            }
+            catch (FormatException fe)
+            { 
+            Console.Write("Ati introdus o valoare gresita! \n{0}", fe.Message);
+            }
+            
+
+           
+
+            try
+            {
+                Console.WriteLine("Introduceti lungimea sirului de numere");
+                string lenght = Console.ReadLine();
+                int arraylenght = int.Parse(lenght);
+                double[] arrayfromconsole = new double[arraylenght];
+                for (int i = 0; i < arrayfromconsole.Length; i++)
+                {
+                    Console.WriteLine("Introduceti elementul {0} din sirului de numere", i);
+                    string s = Console.ReadLine();
+                    arrayfromconsole[i] = double.Parse(s);
+                }
+
+                Console.WriteLine("Introduceti numarul de cautat in sirului de numere");
+                String search = Console.ReadLine();
+                double searchd = double.Parse(search);
+                Console.WriteLine(searchd.IsIn(arrayfromconsole));
+            }
+             
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
+}
