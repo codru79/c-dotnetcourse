@@ -1,0 +1,52 @@
+// Descriere solutie  https://ro.wikipedia.org/wiki/Ecua%C8%9Bie_de_gradul_al_doilea
+//rezolvarea matematica implementata mai jos http://www.e-formule.ro/wp-content/uploads/ecuatia-grd-ii.htm
+double x1 = 0, x2 = 0, a = 0, b = 0, c = 0, discriminator = 0;
+
+a = validateInput("a");
+b = validateInput("b");
+c = validateInput("c");
+discriminator = (b * b) - (4 * a * c);
+if (a == 0)
+{
+    x1 = -c / b;
+    Console.WriteLine(@"Daca a=0 
+atunci ecuatia este de gradul 1 si are o singura solutie" + x1);
+}
+else
+
+ if (discriminator > 0)
+{
+    x1 = (-b + Math.Sqrt(discriminator)) / (2 * a);
+    x2 = (-b - Math.Sqrt(discriminator)) / (2 * a);
+    Console.WriteLine("ecuatia are 2 solutii reale si distincte" + x1 + " si " + x2);
+}
+else if (discriminator == 0)
+{
+    x1 = -b / 2 * a;
+    Console.WriteLine("ecuatia are 2 solutii reale si egale" + x1);
+}
+else
+{
+    Console.WriteLine("ecuatia nu are solutii reale");
+}
+
+static double validateInput(string constant)
+{
+   double output = 0; 
+   bool isValid=false;
+    Console.WriteLine($"introdu valori pentru constanta ecuatiei - {constant}");
+    do
+    {
+        string input = Console.ReadLine();
+        isValid = Double.TryParse(input, out output);
+        if (isValid)
+        {
+            Console.WriteLine($"Ai introdus valoarea {input} pentru {constant} ");
+        }
+        else
+        {
+            Console.WriteLine($"Valoarea pentru {input} nu este un numar real. Te rugam reintrodu");
+        }
+    } while (!isValid);
+    return output;
+}
