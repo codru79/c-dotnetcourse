@@ -1,0 +1,287 @@
+// See https://aka.ms/new-console-template for more information
+//Console.WriteLine("Hello, World!");
+//Create an application to convert numbers to text for numbers from 0 to 9999.
+
+//Read the number from the console and write the equivalent string to console.
+//Example:832->eight hundred thirty-two
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Please enter a positive integer with value between 0 and 9999");
+        string input = Console.ReadLine();
+        int consolenumber = EnsureIsIntegerPositive(input);
+        int length = consolenumber.ToString().Length;
+        switch (length)
+        {
+            case 1:
+                    Console.WriteLine(Is1digit(consolenumber.ToString()));
+                break;
+            case 2:
+                    Console.WriteLine(Is2digit(consolenumber.ToString()));
+                break;
+            case 3:
+                Console.WriteLine(Is3digit(consolenumber.ToString()));
+                break;
+            case 4:
+                Console.WriteLine(Is4digit(consolenumber.ToString()));
+                break;
+        }
+    }
+
+    static string Is1digit(string input)
+    {
+        int number = int.Parse(input);
+        string name = String.Empty;
+        switch (number)
+        {
+            case 0:
+            name = "zero";
+                break;
+            case 1:
+                name = "one";
+                    break;
+            case 2:
+                name = "two";
+                    break;
+            case 3:
+                name = "three";
+                    break;
+            case 4:
+                name = "four";
+                    break;
+            case 5:
+                name = "five";
+                    break;
+            case 6:
+                name = "six";
+                    break;
+            case 7:
+                name = "seven";
+                    break;
+            case 8:
+                name = "eight";
+                break;
+            case 9:
+                name = "nine";
+                break;
+        }
+        return name;
+    }
+
+    static string Is2digit(string input)
+    {
+        int number = int.Parse(input);
+        string name = String.Empty;
+        switch (number)
+        {
+            case 10:
+                name = "ten";
+                break;
+            case 11:
+                name = "eleven";
+                break;
+            case 12:
+                name = "twelve";
+                break;
+            case 13:
+                name = "thirteen";
+                break;
+            case 14:
+                name = "fourteen";
+                break;
+            case 15:
+                name = "fiftheen";
+                break;
+            case 16:
+                name = "sixteen";
+                break;
+            case 17:
+                name = "seventeen";
+                break;
+            case 18:
+                name = "eighteen";
+                break;
+            case 19:
+                name = "nineteen";
+                break;
+            case 20:
+                name = "twenty";
+                break;
+            case 30:
+                name = "thirthy";
+                break;
+            case 40:
+                name = "fourty";
+                break;
+            case 50:
+                name = "fifty";
+                break;
+            case 60:
+                name = "sixty";
+                break;
+            case 70:
+                name = "seventy";
+                break;
+            case 80:
+                name = "eighty";
+                break;
+            case 90:
+                name = "ninety";
+                break;
+            default:
+                name = Is2digit(input.Substring(0, 1) + "0") + " " + Is1digit(input.Substring(1));
+                break;
+        }
+        return name;
+    }
+
+    static string Is3digit(string input)
+    {
+        int number = int.Parse(input);
+        string name = String.Empty;
+        switch (number)
+        {
+            case 100:
+                name = "one hundred";
+                break;
+            case 200:
+                name = "two hundred";
+                break;
+            case 300:
+                name = "three hundred";
+                break;
+            case 400:
+                name = "four hundred";
+                break;
+            case 500:
+                name = "five hundred";
+                break;
+            case 600:
+                name = "six hundred";
+                break;
+            case 700:
+                name = "seven hundred";
+                 break;
+            case 800:
+                name = "eight hundred";
+                break;
+            case 900:
+                name = "nine hundred";
+                break;
+            default:
+                if (input.Substring(1, 1) != "0" && (int.Parse(input.Substring(1, 2)) > 19) && input.Substring(2, 1) != "0")
+                {
+                    name = Is3digit(input.Substring(0, 1) + "0" + "0") + " " + Is2digit(input.Substring(1, 1) + "0") + " " + Is1digit(input.Substring(2));
+                }
+                else if (input.Substring(1, 1) != "0" && (int.Parse(input.Substring(1, 2)) > 19) && input.Substring(2, 1) == "0")
+                {
+                    name = Is3digit(input.Substring(0, 1) + "0" + "0") + " " + Is2digit(input.Substring(1, 2));
+                }
+                else if (input.Substring(1, 1) != "0" && int.Parse(input.Substring(1, 2)) <= 19)
+                {
+                    name = Is3digit(input.Substring(0, 1) + "0" + "0") + " " + "and " + Is2digit(input.Substring(1, 2));
+                }
+                else if (input.Substring(1, 1) == "0" && (input.Substring(2,1)=="0"))
+                {
+                    name = Is3digit(input);
+                }
+                else if (input.Substring(1, 1) == "0" && (input.Substring(2, 1) != "0"))
+                {
+                    name = Is3digit(input.Substring(0, 1) + "0" + "0") + " " + "and " + Is1digit(input.Substring(2));
+                }
+
+                break;
+        }
+        return name;
+    }
+
+    static string Is4digit(string input)
+    {
+        int number = int.Parse(input);
+        string name = String.Empty;
+        switch (number)
+        {
+            case 1000:
+                name = "one thousand";
+                break;
+            case 2000:
+                name = "two thousand";
+                break;
+            case 3000:
+                name = "three thousand";
+                break;
+            case 4000:
+                name = "four thousand";
+                break;
+            case 5000:
+                name = "five thousand";
+                break;
+            case 6000:
+                name = "six thousand";
+                break;
+            case 7000:
+                name = "seven thousand";
+                break;
+            case 8000:
+                name = "eight thousand";
+                break;
+            case 9000:
+                name = "nine thousand";
+                break;
+            default:
+                if (input.Substring(1, 1) != "0" && input.Substring(2, 1) != "0" && (int.Parse(input.Substring(2, 2)) >= 19))
+                {
+                    name = Is4digit(input.Substring(0, 1) + "0" + "0" + "0") + " " + Is3digit(input.Substring(1, 1) + "0" + "0") + " " + Is2digit(input.Substring(2, 1) + "0") + " " + Is1digit(input.Substring(3));
+                }
+                else if (number.ToString().Substring(1, 1) == "0" && number.ToString().Substring(2, 1) != "0" && (int.Parse(number.ToString().Substring(2, 2)) <= 19))
+                {
+                    name = Is4digit(input.Substring(0, 1) + "0" + "0" + "0") + " " + Is2digit(input.Substring(2, 2));
+                }
+                else if (input.Substring(1, 1) == "0" && input.Substring(2, 1) != "0" && (int.Parse(input.Substring(2, 2)) > 19))
+                {
+                    name = Is4digit(input.Substring(0, 1) + "0" + "0" + "0") + " " + Is2digit(input.Substring(2, 1) + "0") + " " + Is1digit(input.Substring(3));
+                }
+                else if (input.Substring(1, 1) == "0" && input.Substring(2, 1) == "0")
+                {
+                    name = Is4digit(input.Substring(0, 1) + "0" + "0" + "0") + " " + "and " + Is1digit(input.Substring(3));
+                }
+                else if (input.Substring(2, 1) == "0" && input.Substring(3, 1) != "0")
+                {
+                    name = Is4digit(input.Substring(0, 1) + "0" + "0" + "0") + " " + Is3digit(input.Substring(1, 1) + "0" + "0") + " " + "and " + Is1digit(input.Substring(3));
+                }
+                else if (input.Substring(1, 1) != "0" && input.Substring(2, 1) == "0" && input.Substring(3, 1) == "0")
+                {
+                    name = Is4digit(input.Substring(0, 1) + "0" + "0" + "0") + " " + Is3digit(input.Substring(1, 3));
+                }
+                    break;
+        }
+        return name;
+    }
+    static int EnsureIsIntegerPositive(string input)
+    {
+        int output = 0;
+        bool isValid = false;
+        do
+        {
+            isValid = int.TryParse(input, out output);
+            if (isValid && output >= 0 && output <=9999)
+            {
+                Console.WriteLine($"You have entered value {input}");
+            }
+            else
+            {
+                Console.WriteLine($"Value for {input} is not integer, positive and smaleer then 9999. Please re-enter the value");
+            }
+        } while (!isValid || output < 0 ||output >9999 );
+        return output;
+    }
+
+
+}
+
+
+
+
+
